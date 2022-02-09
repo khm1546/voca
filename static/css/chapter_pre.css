@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* { margin: 0px; padding: 0px; 
+	box-sizing: border-box; 
+	font-family: 'Noto Sans KR', sans-serif;
+	list-style-type: none; text-decoration: none;
+}
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,body{ width: 100%; height: 100%; }
+body { display: flex; justify-content: center; align-items: center; background:#000;}
+#wrap { 
+	background-image: url('/static/images/main-bg.png');
+	background-size: 100% 100%, 100% 100%; background-repeat:no-repeat;
+	position: relative; width: 100%; height: 100%;
+}
+.memo {
+	background: url(/static/images/memo.png) no-repeat; width: 72.6%; height: 77%; z-index: 999;
+	position: absolute; top: 12%; left: 12.6%; background-size: 100% 100%;
+}
+
+.select-unit { 
+	width: 29.5%; height: 11.6%; display: block; margin: 2.8% 0% 0% 3.3%;
+	font-family: 'MuseoModerno', cursive; font-weight: 800;
+	display: flex; justify-content: center; align-items: center;
+	font-size: 2.0313vw; color: #fff; letter-spacing: 0.15em;
+	background: #D9328C;
+}
+
+.chapter-box { 
+    width: 91.5%; height: 40%; display: flex; 
+    justify-content: space-between; margin: 12% auto 0 auto
+}
+.unit { width: 100%; height: 100%; cursor: pointer;}
+.unit-num { 
+	width: 45.6%; height: 32%; position: absolute; top: 47%; left: 47%;
+	transform: translate(-50%,-50%);
+}
+.chapter-box > section { 
+	position: relative; width: 24.4%; height: 88.5%; position: relative;
+	cursor: pointer;
+}
+.check-view { position: absolute; top: -4%; right: -2%; width: 29%; height: 28%;}
+
+
+.chapter-btn { 
+    width: 7.1%; height: 15.9%; cursor: pointer; 
+    display: block; position: absolute; right: 2.6%;
+}
+.chapter1 { top: 8.3%;}
+.chapter2 { top: 25%;}
+.chapter3 { top: 41.7%;}
+.chapter4 { top: 58.5%;}
+.chapter5 { top: 75.3%;}
+
+.angle-nine { transform: rotate(9.75deg);}
+.angle-five { transform: rotate(-5.74deg);}
+
+
+
+
+@media (min-aspect-ratio: 1280/800){
+    .select-unit { font-size: 3.36vh;}
+}

@@ -1,0 +1,108 @@
+<!doctype html> 
+<html lang="ko"> 
+<head> 
+    <meta charset="UTF-8">
+    <title>QUESTION/BASIC</title>
+    <link rel="shortcut icon" href="/static/images/heart.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/heart.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/voca-question-junior.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+</head>
+<body>
+    <div id="wrap">
+        <section class="memo">
+            <div class="select-unit">SELECT UNIT</div>
+            <section class="question-box">BIRTHDAY</section>
+
+            <section class="answer-box">
+                <div class="left-box">생일</div>
+                <div class="center-box">명절</div>
+                <div class="right-box">크리스마스</div>
+                <div class="left-box bottom-left">선물</div>
+                <div class="center-box bottom-right">아름다운</div>
+            </section>
+
+            <div class="time-box text-center" id="count-down-timer"></div>
+            <img src="/static/images/molla.png" class="molla">
+        </section>
+        <div class="BtnList">
+            <img src="/static/images/next-btn.png" class="PlayBtn next-btn">
+            <img src="/static/images/pre-btn.png" class="PlayBtn pre-btn">
+            <img src="/static/images/setting.png" class="PlayBtn setting">
+            <img src="/static/images/cancel.png" class="PlayBtn cancel">
+        </div>
+    </div>
+</body>
+    <script>
+        function reszie(){
+            var height = $(window).height();
+            var width = $(window).width();
+            var HEIGHT = 800;
+            var WIDTH = 1280;
+            if (height / width > HEIGHT / WIDTH){
+                var w = width;
+                var h = HEIGHT/WIDTH * w;
+                $("#wrap").css("height", h+"px");
+                $("#wrap").css("width", w+"px");
+            }
+            else{
+                var h = height;
+                var w = WIDTH/HEIGHT * h;
+                $("#wrap").css("width", w+"px");
+                $("#wrap").css("height", h+"px");
+            }
+        }
+        $(window).resize(function(){
+            reszie();
+        });
+        $(document).ready(function(){
+            reszie()
+        });
+
+       
+
+    </script>
+
+
+
+<script>
+    function paddedFormat(num) {
+        return num < 10 ? "0" + num : num; 
+    }
+
+    function startCountDown(duration, element) {
+
+        let secondsRemaining = duration;
+        let min = 0;
+        let sec = 0;
+
+        let countInterval = setInterval(function () {
+
+            min = parseInt(secondsRemaining / 60);
+            sec = parseInt(secondsRemaining % 60);
+
+            element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
+
+            secondsRemaining = secondsRemaining - 1;
+            if (secondsRemaining < 0) { clearInterval(countInterval) };
+
+        }, 1000);
+    }
+
+    window.onload = function () {
+        let time_minutes = 15; // Value in minutes
+        let time_seconds = 00; // Value in seconds
+
+        let duration = time_minutes * 60 + time_seconds;
+
+        element = document.querySelector('#count-down-timer');
+        element.textContent = `${paddedFormat(time_minutes)}:${paddedFormat(time_seconds)}`;
+
+        startCountDown(--duration, element);
+    };
+
+    </script>
+</html>

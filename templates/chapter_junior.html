@@ -1,0 +1,111 @@
+<!doctype html> 
+<html lang="ko"> 
+<head> 
+    <meta charset="UTF-8">
+    <title>chapter_junior</title>
+    <link rel="shortcut icon" href="/static/images/heart.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/heart.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/chapter_junior.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+</head>
+<body>
+    <div id="wrap">
+        <section class="memo">
+            <div class="select-unit">SELECT UNIT</div>
+            <div class="chapter-box">
+                <div class="chapter-top-line">
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit">
+                        <img src="/static/images/01.png" class="unit-num">
+                        <img src="/static/images/on-check.png" class="check-view c-on">
+                    </section>
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit angle-nine">
+                        <img src="/static/images/02.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit angle-five">
+                        <img src="/static/images/03.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit angle-nine">
+                        <img src="/static/images/04.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit angle-nine">
+                        <img src="/static/images/05.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                </div>
+                <div class="chapter-bottom-line">
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit">
+                        <img src="/static/images/06.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit angle-nine">
+                        <img src="/static/images/07.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit angle-five">
+                        <img src="/static/images/08.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit angle-nine">
+                        <img src="/static/images/09.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                    <section>
+                        <img src="/static/images/unit_img.png" class="unit angle-nine">
+                        <img src="/static/images/10.png" class="unit-num">
+                        <img src="/static/images/un-check.png" class="check-view c-off">
+                    </section>
+                </div>
+            </div>
+        </section>
+        
+        <img src="/static/images/chapter1-short-com.png" class="chapter-btn chapter1">
+        <img src="/static/images/chapter2-short-not.png" class="chapter-btn chapter2">
+        <img src="/static/images/chapter3-short-not.png" class="chapter-btn chapter3">
+        <img src="/static/images/chapter4-short-not.png" class="chapter-btn chapter4">
+        <img src="/static/images/chapter5-short-not.png" class="chapter-btn chapter5">
+        <img src="/static/images/chapter6-short-not.png" class="chapter-btn chapter6">
+        <img src="/static/images/chapter7-short-not.png" class="chapter-btn chapter7">
+    </div>
+</body>
+    <script>
+        function reszie(){
+            var height = $(window).height();
+            var width = $(window).width();
+            var HEIGHT = 800;
+            var WIDTH = 1280;
+            if (height / width > HEIGHT / WIDTH){
+                var w = width;
+                var h = HEIGHT/WIDTH * w;
+                $("#wrap").css("height", h+"px");
+                $("#wrap").css("width", w+"px");
+            }
+            else{
+                var h = height;
+                var w = WIDTH/HEIGHT * h;
+                $("#wrap").css("width", w+"px");
+                $("#wrap").css("height", h+"px");
+            }
+        }
+        $(window).resize(function(){
+            reszie();
+        });
+        $(document).ready(function(){
+            reszie()
+        });
+    </script>
+</html>

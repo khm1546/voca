@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* { margin: 0px; padding: 0px; 
+	box-sizing: border-box; 
+	font-family: 'Noto Sans KR', sans-serif;
+	list-style-type: none; text-decoration: none;
+}
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,body{ width: 100%; height: 100%; }
+body { display: flex; justify-content: center; align-items: center; background:#000;}
+#wrap { 
+	background-image: url('/static/images/main-bg.png');
+	background-size: 100% 100%, 100% 100%; background-repeat:no-repeat;
+	position: relative; width: 100%; height: 100%;
+}
+.memo {
+	background: url(/static/images/memo.png) no-repeat; width: 72.6%; height: 77%; z-index: 999;
+	position: absolute; top: 12%; left: 12.6%; background-size: 100% 100%;
+}
+.question-box { 
+    border: 1px solid; width: 62%; height: 52.4%; margin: 1% auto 0 auto;
+    background-image: url('/static/images/question-box-en.png'); background-size: 100% 100%;
+    font-size: 4.6vw; color: #FFFFFF; font-weight: 800; display: flex;
+    justify-content: center; align-items: center; font-family: NanumSquareRound;
+}
+.answer-box { 
+     width: 96.8%; height: 20.7%;
+    margin: 2% auto 0 auto; display: flex; justify-content: space-between;
+}
+.answer-box > div { 
+    width: 30%; display: flex; justify-content: center;
+    align-items: center; font-size: 3.3vw; font-weight: 800; color: #333333;
+    font-family: NanumSquareRound; cursor: pointer; font-style: normal;
+}
+.left-box { background: url(/static/images/left-box.png) no-repeat; background-size: 100% 100%;}
+.center-box { background: url(/static/images/center-box.png) no-repeat; background-size: 100% 100%;}
+.right-box { background: url(/static/images/right-box.png) no-repeat; background-size: 100% 100%;}
+
+
+.time-box { 
+    position: absolute; top: -13.5%; right: 0%; width: 17.6%; height: 29.1%;
+    background: url(/static/images/time-box.png) no-repeat; background-size: 100% 100%;
+    font-size: 3.3vw; font-weight: 800; font-family: NanumSquareRound;
+    color: #333333; text-align: center; display: flex; justify-content: center;
+    align-items: center; padding-top: 3.2%;
+}
+.molla { position: absolute; top: 10%; right: -5.5%; width: 17.5%; height: 19%;}
+    
+
+.select-unit { 
+	width: 29.5%; height: 11.6%; display: block; margin: 2.8% 0% 0% 3.3%;
+	font-family: 'MuseoModerno', cursive; font-weight: 800;
+	display: flex; justify-content: center; align-items: center;
+	font-size: 2.0313vw; color: #fff; letter-spacing: 0.15em;
+	background: #D9328C;
+}
+
+.PlayBtn { width: 7.4%; height: 17%; cursor: pointer; display: block; position: absolute; right: 2.28%;}
+.next-btn { top: 8.1%; }
+.pre-btn { top: 30%; }
+.setting { top: 52%; }
+.cancel { top: 73.5%; }
+
+
+@media (min-aspect-ratio: 1280/800){
+    .question-box { font-size: 7.36vh;}
+    .time-box { font-size: 5.28vh;}
+    .answer-box > div { font-size: 5.28vh;}
+    .select-unit { font-size: 3.36vh;}
+}

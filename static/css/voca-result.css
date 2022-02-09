@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* { margin: 0px; padding: 0px; 
+	box-sizing: border-box; 
+	font-family: 'Noto Sans KR', sans-serif;
+	list-style-type: none; text-decoration: none;
+}
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,body{ width: 100%; height: 100%; }
+body { display: flex; justify-content: center; align-items: center; background:#000;}
+#wrap { 
+	background-image: url('/static/images/main-bg.png');
+	background-size: 100% 100%, 100% 100%; background-repeat:no-repeat;
+	position: relative; width: 100%; height: 100%;
+}
+.memo {
+	width: 72.6%; height: 77%; z-index: 999;
+	position: absolute; top: 12%; left: 12.6%; background-size: 100% 100%;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.memo > div { 
+    width: 100%;
+    display: flex; justify-content: space-between;
+}
+.top-result { height: 48%;}
+.bottom-result { height: 48%;}
+
+.small-memo { 
+    background: url(/static/images/small-memo.png); width: 42.4%; background-size: 100% 100%;
+    position: relative;
+}
+.final-score { 
+    position: absolute; top: 9%; left: -4%; width: 70.1%; height: 23.8%;
+    font-family: 'MuseoModerno', cursive; background: #D9328C; color: #FFF;
+    display: flex; justify-content: center; align-items: center; font-weight: 800;
+    letter-spacing: 0.15em; font-size: 2.1vw;
+}
+.small-memo > h1 { 
+    font-family: NanumSquareRound; font-weight: 800; color: #333333;
+    text-align: center; margin-top: 30%; font-size: 11vw;
+}
+
+.middle-memo { 
+    background: url(/static/images/middle-memo.png); width: 54.5%; background-size: 100% 100%;
+    position: relative;
+}
+.Total-TimeBox { 
+    background: #D9328C; width: 89.5%; height: 23.7%; position: absolute;
+    top: 9%; left: 5.5%; display: flex; justify-content: center; align-items: center;
+}
+.TimeTotal { font-size: 2.1vw; color: #fff; font-weight: 800; letter-spacing: 0.15em;
+}
+.TimeTotal span {
+    font-family: 'MuseoModerno', cursive;
+}
+.question-num { 
+    width: 85%; height: 10%; margin: 24% auto 0 auto;
+    display: flex; justify-content: space-between;
+}
+.question-num > span {
+    font-family: NanumSquareRound; font-weight: 800;
+    font-size: 1.3vw; color: #333333;
+}
+.question-result { 
+    width: 95%; height: 36%; margin: 2% auto 0 auto;
+    display: flex; justify-content: space-between;
+}
+.question-result > div { 
+    background: url(/static/images/red-circle.png); background-size: 100% 100%;
+    width: 30%; display: flex; justify-content: center; align-items: center;
+}
+.question-result > div > span { font-size: 4vw; font-weight: 800; font-family: NanumSquareRound;}
+    
+
+.large-memo { 
+    background: url(/static/images/large-memo2.png); width: 100%; background-size: 100% 100%;
+    position: relative;
+}
+.weekness { 
+    position: absolute; top: 9%; left: -1.6%; width: 34.2%; height: 23.8%;
+    background: #D9328C; color: #FFF; font-family: 'MuseoModerno', cursive;
+    display: flex; justify-content: center; align-items: center; font-weight: 800;
+    letter-spacing: 0.15em; font-size: 1.9vw;
+}
+.FadeWrap { 
+    width: 100%; height: 62%; margin-top: 12%; position: relative;
+    display: flex;
+}
+.FadeWrap > ul { display: flex; flex-direction: column; height: 100%; flex: 1}
+.FadeWrap > ul li:last-child { margin-bottom: 2%;}
+
+.row { display: block; flex: 1; display: flex; align-items: center; margin-left: 5%; }
+.row > span { 
+    font-size: 1.85vw; font-family: NanumSquareRound; color: #333333;
+    display: inline-block; margin-right: 5%;
+}
+.row > span:first-child { margin-left: 5%;}
+.English-word { font-weight: 800;}
+.korea-word { font-weight: normal;}
+.discription { font-weight: normal;}
+
+.FadeWrap > img { position: absolute; width: 7%; height: 31.5%; cursor: pointer;}
+.slide-next-btn { top: 50%; right: -5%; transform: translateY(-104%);}
+.slide-prev-btn { top: 50%; left: -5%; transform: translateY(-104%);}
+
+    
+
+.PlayBtn { width: 7.4%; height: 17%; cursor: pointer; display: block; position: absolute; right: 2.28%;}
+.next-btn { top: 8.1%; }
+.pre-btn { top: 30%; }
+.setting { top: 52%; }
+.cancel { top: 73.5%; }
+
+
+@media (min-aspect-ratio: 1280/800){
+    .small-memo > h1{ font-size: 17.6vh; }
+    .TimeTotal { font-size: 3.36vh;}
+    .final-score { font-size: 3.36vh;}
+    .weekness { font-size: 3vh;}
+    .row > span { font-size: 2.96vh;}
+    .question-num > span { font-size: 2.08vh;}
+    .question-result > div > span { font-size: 6.4vh;}
+}

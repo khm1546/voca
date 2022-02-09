@@ -1,0 +1,128 @@
+<!doctype html> 
+<html lang="ko"> 
+<head> 
+    <meta charset="UTF-8">
+    <title>voca-result</title>
+    <link rel="shortcut icon" href="/static/images/heart.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/heart.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/voca-result.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+</head>
+<body>
+    <div id="wrap">
+        <section class="memo">
+            <div class="top-result">
+                <div class="small-memo">
+                    <div class="final-score">FINAL SCORE</div>
+                    <h1>9999</h1>
+                </div>
+                <div class="middle-memo">
+                    <div class="Total-TimeBox">
+                        <div class="TimeTotal">
+                            <span>TOTAL</span>
+                            <span>10m 36sec</span>
+                        </div>
+                    </div>
+                    <div class="question-num">
+                        <span>맞은 문제 수</span>
+                        <span>틀린 문제 수</span>
+                        <span>넘긴 문제 수</span>
+                    </div>
+                    <div class="question-result">
+                        <div class="clear-question"><span>99</span></div>
+                        <div class="wrong-question"><span>99</span></div>
+                        <div class="molla-question"><span>99</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-result">
+                <div class="large-memo">
+                   <div class="weekness">YOUR WEAKNESS</div>
+                    <div class="FadeWrap">
+
+                        <ul>
+                            <li class="row">
+                                <span class="English-word">Christmas</span>
+                                <span class="korea-word">크리스마스</span>
+                            </li>
+                            <li class="row">
+                                <span class="English-word">Holiday</span>
+                                <span class="korea-word">명절</span>
+                            </li>
+                            <li class="row">
+                                <span class="English-word">Birthday</span>
+                                <span class="korea-word">생일</span>
+                            </li>
+                        </ul>
+
+                        <ul>
+                            <li class="row">
+                                <span class="English-word">Christmas</span>
+                                <span class="korea-word">크리스마스</span>
+                            </li>
+                            <li class="row">
+                                <span class="English-word">Holiday</span>
+                                <span class="korea-word">명절</span>
+                            </li>
+                            <li class="row">
+                                <span class="English-word">Birthday</span>
+                                <span class="korea-word">생일</span>
+                            </li>
+                        </ul>
+
+                        <img src="/static/images/slide-next-btn.png" class="slide-next-btn">
+                        <img src="/static/images/slide-prev-btn.png" class="slide-prev-btn">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="BtnList">
+            <img src="/static/images/next-btn.png" class="PlayBtn next-btn">
+            <img src="/static/images/pre-btn.png" class="PlayBtn pre-btn">
+            <img src="/static/images/setting.png" class="PlayBtn setting">
+            <img src="/static/images/cancel.png" class="PlayBtn cancel">
+        </div>
+    </div>
+</body>
+    <script>
+        function reszie(){
+            var height = $(window).height();
+            var width = $(window).width();
+            var HEIGHT = 800;
+            var WIDTH = 1280;
+            if (height / width > HEIGHT / WIDTH){
+                var w = width;
+                var h = HEIGHT/WIDTH * w;
+                $("#wrap").css("height", h+"px");
+                $("#wrap").css("width", w+"px");
+            }
+            else{
+                var h = height;
+                var w = WIDTH/HEIGHT * h;
+                $("#wrap").css("width", w+"px");
+                $("#wrap").css("height", h+"px");
+            }
+        }
+        $(window).resize(function(){
+            reszie();
+        });
+        $(document).ready(function(){
+            reszie()
+        });
+
+
+        $('.slide-next-btn').click(function(){
+            alert('다음');
+        })
+
+        $('.slide-prev-btn').click(function(){
+            alert('이전');
+        })
+    </script>
+</html>
