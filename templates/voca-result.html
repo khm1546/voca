@@ -1,18 +1,9 @@
 <!doctype html> 
 <html lang="ko"> 
-<head> 
-    <meta charset="UTF-8">
+<head>
     <title>voca-result</title>
-    <link rel="shortcut icon" href="/static/images/heart.png" type="image/x-icon">
-    <link rel="icon" href="/static/images/heart.png" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/voca-result.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+    {% include 'header.html' %}
 </head>
 <body>
     <div id="wrap">
@@ -91,31 +82,6 @@
     </div>
 </body>
     <script>
-        function reszie(){
-            var height = $(window).height();
-            var width = $(window).width();
-            var HEIGHT = 800;
-            var WIDTH = 1280;
-            if (height / width > HEIGHT / WIDTH){
-                var w = width;
-                var h = HEIGHT/WIDTH * w;
-                $("#wrap").css("height", h+"px");
-                $("#wrap").css("width", w+"px");
-            }
-            else{
-                var h = height;
-                var w = WIDTH/HEIGHT * h;
-                $("#wrap").css("width", w+"px");
-                $("#wrap").css("height", h+"px");
-            }
-        }
-        $(window).resize(function(){
-            reszie();
-        });
-        $(document).ready(function(){
-            reszie()
-        });
-
 
         $('.slide-next-btn').click(function(){
             alert('다음');

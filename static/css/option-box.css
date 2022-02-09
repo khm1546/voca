@@ -1,0 +1,74 @@
+
+.option-box {
+	width: 48.1%; height: 42.4%; position: absolute; z-index: 99999999999;
+	left: 50%; top: 50%; transform: translate(-50%, -50%);
+	background: url(/static/images/option-box.png); background-size: 100% 100%;
+	display: none;
+}
+.option-cancel { width: 13.5%; height: 25%; float: right; margin: 3% 4% 0% 0%; cursor: pointer;}
+.option-check {
+	width: 19.9%; height: 37.2%; position: absolute; bottom: -7%; left: 7%;
+	cursor: pointer;
+}
+input[type=range] { width:40.1%; -webkit-appearance: none; background: transparent; }
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+}
+input[type=range]:focus {
+	outline: none; /* input range에 포커스 되었을 경우 기본 블러처리 제거 */
+}
+input[type=range]::-ms-track {
+	width: 100%;
+	cursor: pointer;
+	background: transparent;
+	border-color: transparent;
+	color: transparent;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 1vw;
+    height: 2.3vw;
+    cursor: pointer;
+    background: #E6D3C8;
+	border-radius: 20px;
+}
+
+
+input[type=range]::-webkit-slider-thumb {
+    width: 3vw;
+    height: 5vw;
+    background: linear-gradient(90deg, #74BF34 0.09%, #8ED94E 99.89%);
+	border-radius: 20px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8%; /*chrome의 경우 margin-top값을 부여해야합니다.*/
+	box-shadow: 0 3px 0 rgb(98,161,44);
+}
+
+.volume-box {
+	width: 100%; height: 9%; position: absolute; top: 45%; left: 15%;
+	font-family: MuseoModerno; color: #3D3A4F; font-weight: 900; font-size: 4vw;
+}
+
+
+@keyframes start {
+	0% {
+		transform: scale(1.0);
+	}
+	100% {
+		transform: scale(1.1);
+	}
+}
+
+
+@media (min-aspect-ratio: 1280/800){
+	.volume-box  { font-size: 6.4vh;}
+	input[type=range]::-webkit-slider-runnable-track { width: 1.6vh; height: 3.68vh;}
+    input[type=range]::-webkit-slider-thumb { width: 4.8vh; height: 8vh; }
+}
+
+
+#mask {
+	background: rgba(0,0,0,0.5); width: 100%; height: 100%;
+	z-index: 10000000000; position: absolute; top: 0; left: 0; display: none;
+}

@@ -15,22 +15,26 @@ def index():
 @app.route("/level-select")
 def level_select():
 
+    page = "voca-chapter"
 
+    return render_template("/voca-level.html", page=page)
 
-    return render_template("/voca-level.html")
-
-@app.route("/voca-pre")
+@app.route("/voca-chapter", methods=['POST'])
 def voca_pre():
 
+    level = request.form["level"]
+    page = "voca-question"
 
 
-    return render_template("/chapter_pre.html")
+    return render_template("/chapter_pre.html", level=level, page=page)
 
 
-@app.route("/voca-q-pre")
-def voca_q_pre():
+@app.route("/voca-question", methods=['POST'])
+def voca_question():
 
-    return render_template("/voca-question-ps.html")
+    level = request.form["level"]
+
+    return render_template("/voca-question-ps.html", level=level)
 
 @app.route("/result", methods=['POST'])
 def voca_result():
@@ -50,15 +54,15 @@ def q_load():
         },
         {"q_num":2,
             "q":"집",
-            "a1":"movie",
-            "a2":"mavie",
-            "a3":"mobie"
+            "a1":"home",
+            "a2":"hoem",
+            "a3":"herm"
         },
         {"q_num":3,
             "q":"배우",
-            "a1":"movie",
-            "a2":"mavie",
-            "a3":"mobie"
+            "a1":"actro",
+            "a2":"actor",
+            "a3":"actar"
         },
         {"q_num":4,
             "q":"군대",

@@ -1,31 +1,14 @@
 <!doctype html> 
 <html lang="ko"> 
-<head> 
-    <meta charset="UTF-8">
+<head>
     <title>voca-main</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/static/images/heart.png" type="image/x-icon">
-    <link rel="icon" href="/static/images/heart.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="/static/css/voca-main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+    {% include 'header.html' %}
 </head>
 <body>
     <div id="wrap">
         <audio autoplay id="audio" src="/static/images/test.mp3"></audio>
-        <div id="mask"></div>
-        <div class="option-box">
-            <img src="/static/images/option-cancel.png" class="option-cancel">
-            <img src="/static/images/on-check.png" class="option-check">
-            <div class="volume-box">
-                <span style="display: inline-block; margin-right: 3%;">MUSIC</span>
-                <input id="vol" type="range" max="100" min="0">
-            </div>
-        </div>
+        {% include 'header-html.html' %}
         <img src="/static/images/pen_y.png" class="pen-y">
         <img src="/static/images/pen_b.png" class="pen-b">
         <section class="memo">
@@ -41,61 +24,5 @@
         </div>
     </div>
 </body>
-    <script>
-        function reszie(){
-            var height = $(window).height();
-            var width = $(window).width();
-            var HEIGHT = 800;
-            var WIDTH = 1280;
-            if (height / width > HEIGHT / WIDTH){
-                var w = width;
-                var h = HEIGHT/WIDTH * w;
-                $("#wrap").css("height", h+"px");
-                $("#wrap").css("width", w+"px");
-            }
-            else{
-                var h = height;
-                var w = WIDTH/HEIGHT * h;
-                $("#wrap").css("width", w+"px");
-                $("#wrap").css("height", h+"px");
-            }
-        }
-        $(window).resize(function(){
-            reszie();
-        });
-        $(document).ready(function(){
-            reszie()
-        });
 
-
-
-        $('.setting').click(function(){
-            $('#mask').fadeToggle();
-            $('.option-box').fadeToggle();
-        })
-
-        $('#mask').click(function(){
-            $(this).fadeOut();
-            $('.option-box').fadeOut();
-        })
-
-        $('.option-cancel').click(function(){
-            $('.option-box').fadeOut();
-            $('#mask').fadeOut();
-        });
-
-
-        $('.option-check').click(function(){
-            $('.option-box').fadeOut();
-            $('#mask').fadeOut();
-        });
-        
-    </script>
-    <script>        
-
-        vol.oninput = function() {
-            audio.volume = vol.value / 100;
-        }
-
-    </script>
 </html>
