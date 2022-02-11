@@ -10,12 +10,12 @@
         <section class="memo">
             <div class="select-unit">SELECT UNIT</div>
             <section class="question-box">
-                <section>BIRTHDAY</section>
+                <section></section>
             </section>
             <section class="answer-box">
-                <div class="left-box">생일</div>
-                <div class="center-box">명절</div>
-                <div class="right-box">크리스마스</div>
+                <div class="left-box"></div>
+                <div class="center-box"></div>
+                <div class="right-box"></div>
             </section>
 
             <div class="time-box text-center" id="count-down-timer"></div>
@@ -28,6 +28,13 @@
             <img src="/static/images/cancel.png" class="PlayBtn cancel">
         </div>
     </div>
+    <form id="question-form" method="post">
+        <input type="hidden" id="q1">
+        <input type="hidden" id="q2">
+        <input type="hidden" id="q3">
+        <input type="hidden" id="q4">
+        <input type="hidden" id="q5">
+    </form>
 </body>
 {% include 'header-html.html' %}
 <script>
@@ -46,7 +53,11 @@
     });
 
     $(document).on('click','.pre-btn', function (){
-       qCnt --;
+          qCnt --;
+        var example = $(this).data("example");
+
+        $("#q" + qCnt).val("");
+
        if(qCnt == 0){
            alert("첫 번째 문항입니다.");
            qCnt++;
@@ -57,6 +68,20 @@
        }
     });
 
+    $(document).on('click', '.example', function (){
+        var example = $(this).data("example");
+
+        $("#q" + qCnt).val(example);
+        qCnt ++;
+        if(qCnt > 15){
+            alert("마지막 문항입니다.");
+            qCnt --;
+            return false;
+        }else{
+           $(".question-total").hide();
+           $(".q" + qCnt).show();
+        }
+    });
 
     function paddedFormat(num) {
         return num < 10 ? "0" + num : num; 
@@ -85,9 +110,7 @@
         }, 1000);
     }
 
-    function nextBtn(){
 
-    }
 
     window.onload = function () {
 
@@ -101,9 +124,9 @@
 
                 q_html += "<div class='q"+ result[i].q_num +" question-total'>" + result[i].q + "</div>";
 
-                a_html += "<div class='q"+ result[i].q_num +" left-box question-total'>" + result[i].a1 + "</div>";
-                a_html += "<div class='q"+ result[i].q_num +" center-box question-total'>" + result[i].a2 + "</div>";
-                a_html += "<div class='q"+ result[i].q_num +" right-box question-total'>" + result[i].a3 + "</div>";
+                a_html += "<div class='q"+ result[i].q_num +" example left-box question-total' data-example='A'>" + result[i].a1 + "</div>";
+                a_html += "<div class='q"+ result[i].q_num +" example center-box question-total' data-example='B'>" + result[i].a2 + "</div>";
+                a_html += "<div class='q"+ result[i].q_num +" example right-box question-total' data-example='C'>" + result[i].a3 + "</div>";
             }
             $(".question-box").html(q_html);
             $(".answer-box").html(a_html);
@@ -122,8 +145,6 @@
 
         startCountDown(--duration, element);
 
-        nextBtn();
-        preBtn();
     };
 
 
