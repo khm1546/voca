@@ -23,4 +23,10 @@
         });
         $(document).ready(function(){
             reszie();
+
+            $(".chapter-btn").click(function (){
+                var chapIdx = $(this).index();
+                
+                $(this).attr("src", "/static/images/charter" + chapIdx + "-com.png")
+            });
         });

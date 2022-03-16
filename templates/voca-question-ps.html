@@ -42,7 +42,7 @@
 
     $(document).on('click','.next-btn', function (){
         qCnt ++;
-        if(qCnt > 15){
+        if(qCnt > 4){
             alert("마지막 문항입니다.");
             qCnt --;
             return false;
@@ -73,7 +73,7 @@
 
         $("#q" + qCnt).val(example);
         qCnt ++;
-        if(qCnt > 15){
+        if(qCnt > 4){
             alert("마지막 문항입니다.");
             qCnt --;
             return false;
@@ -102,7 +102,7 @@
 
             secondsRemaining = secondsRemaining - 1;
             if($("#count-down-timer").text() == "00:00"){
-                alert("시간이 초과되어 시험이 종료되었습니다.")
+                alert("시간이 초과되어 시험이 종료되었습니다.");
                 location.href='/result';
             }
             if (secondsRemaining < 0) { clearInterval(countInterval) };
