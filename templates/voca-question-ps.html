@@ -2,7 +2,17 @@
 <html lang="ko"> 
 <head>
     <title>QUESTION/PS</title>
+    {% if level == '10' %}
     <link rel="stylesheet" type="text/css" href="/static/css/voca-question-pre.css">
+    {% elif level == '5' %}
+    <link rel="stylesheet" type="text/css" href="/static/css/voca-question-pre.css">
+    {% elif level == '4' %}
+    <link rel="stylesheet" type="text/css" href="/static/css/voca-question-junior.css">
+    {% elif level == '3' %}
+    <link rel="stylesheet" type="text/css" href="/static/css/voca-question-jh.css">
+    {% elif level == '6' %}
+    <link rel="stylesheet" type="text/css" href="/static/css/voca-question-jh.css">
+    {% endif %}
     {% include 'header.html' %}
 </head>
 <body>
@@ -28,7 +38,8 @@
             <img src="/static/images/cancel.png" class="PlayBtn cancel">
         </div>
     </div>
-    <form id="question-form" method="post">
+    <form id="question-form" method="post" action="/result">
+        <input type="hidden" name="level" value="{{level}}">
         <input type="hidden" id="q1">
         <input type="hidden" id="q2">
         <input type="hidden" id="q3">
@@ -42,10 +53,15 @@
 
     $(document).on('click','.next-btn', function (){
         qCnt ++;
-        if(qCnt > 4){
-            alert("마지막 문항입니다.");
-            qCnt --;
-            return false;
+        if(qCnt > 3){
+            var qCon = confirm("마지막 문항입니다. 제출하시겠습니까?");
+            if(qCon){
+                $("#question-form").submit();
+            }else{
+                qCnt --;
+                return false;
+            }
+
         }else{
            $(".question-total").hide();
            $(".q" + qCnt).show();
@@ -73,10 +89,14 @@
 
         $("#q" + qCnt).val(example);
         qCnt ++;
-        if(qCnt > 4){
-            alert("마지막 문항입니다.");
-            qCnt --;
-            return false;
+        if(qCnt > 3){
+            var qCon = confirm("마지막 문항입니다. 제출하시겠습니까?");
+            if(qCon){
+                $("#question-form").submit();
+            }else{
+                qCnt --;
+                return false;
+            }
         }else{
            $(".question-total").hide();
            $(".q" + qCnt).show();
@@ -118,15 +138,47 @@
             url:"/voca/ajax/q_load",
             type:"post"
         }).done(function (result){
+            console.log(result);
                 var q_html = '';
                 var a_html = '';
             for(var i=0; i<result.length; i++){
 
-                q_html += "<div class='q"+ result[i].q_num +" question-total'>" + result[i].q + "</div>";
+                if({{level}} == result[i].level && result[i].level == 10){
+                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
+                }else if({{level}} == result[i].level && result[i].level == 5){
+                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
+                }else if({{level}} == result[i].level && result[i].level == 4){
+                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='D'>" + result[i].question.a4 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='E'>" + result[i].question.a5 + "</div>";
+                }else if({{level}} == result[i].level && result[i].level == 3){
+                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='D'>" + result[i].question.a4 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='E'>" + result[i].question.a5 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='F'>" + result[i].question.a6 + "</div>";
+                }else if({{level}} == result[i].level && result[i].level == 6){
+                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='D'>" + result[i].question.a4 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='E'>" + result[i].question.a5 + "</div>";
+                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='F'>" + result[i].question.a6 + "</div>";
+                }
 
-                a_html += "<div class='q"+ result[i].q_num +" example left-box question-total' data-example='A'>" + result[i].a1 + "</div>";
-                a_html += "<div class='q"+ result[i].q_num +" example center-box question-total' data-example='B'>" + result[i].a2 + "</div>";
-                a_html += "<div class='q"+ result[i].q_num +" example right-box question-total' data-example='C'>" + result[i].a3 + "</div>";
+
             }
             $(".question-box").html(q_html);
             $(".answer-box").html(a_html);

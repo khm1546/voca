@@ -83,6 +83,28 @@
 </body>
     <script>
 
+            if("{{level}}" == 10){
+                $(".final-score").css("background","#D9328C");
+                $(".Total-TimeBox").css("background","#D9328C");
+                $(".weekness").css("background","D9328C");
+            }else if("{{level}}" == 5){
+                $(".final-score").css("background","#EF824E");
+                $(".Total-TimeBox").css("background","#EF824E");
+                $(".weekness").css("background","#EF824E");
+            }else if("{{level}}" == 4){
+                $(".final-score").css("background","#FDCE30");
+                $(".Total-TimeBox").css("background","#FDCE30");
+                $(".weekness").css("background","#FDCE30");
+            }else if("{{level}}" == 3){
+                $(".final-score").css("background","#50B9C5");
+                $(".Total-TimeBox").css("background","#50B9C5");
+                $(".weekness").css("background","#50B9C5");
+            }else if("{{level}}" == 6){
+                $(".final-score").css("background","#3F5FAB");
+                $(".Total-TimeBox").css("background","#3F5FAB");
+                $(".weekness").css("background","#3F5FAB");
+            }
+
         $('.slide-next-btn').click(function(){
             alert('다음');
         })

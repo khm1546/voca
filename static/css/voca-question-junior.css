@@ -15,18 +15,18 @@
 html,body{ width: 100%; height: 100%; }
 body { display: flex; justify-content: center; align-items: center; background:#000;}
 #wrap { 
-	background-image: url('main-bg.png');
+	background-image: url('/static/images/main-bg.png');
 	background-size: 100% 100%, 100% 100%; background-repeat:no-repeat;
 	position: relative; width: 100%; height: 100%;
 }
 .memo {
-	background: url(memo.png) no-repeat; width: 72.6%; height: 77%; z-index: 999;
+	background: url(/static/images/memo.png) no-repeat; width: 72.6%; height: 77%; z-index: 999;
 	position: absolute; top: 12%; left: 12.6%; background-size: 100% 100%;
 }
 .question-box { 
     border: 1px solid; width: 48.13%; height: 38.2%; margin: 0 auto 0 auto;
-    background-image: url('question-box-en.png'); background-size: 100% 100%;
-    font-size: 4.6vw; color: #FFFFFF; font-weight: 800; display: flex;
+    background-image: url('/static/images/question-box-en.png'); background-size: 100% 100%;
+    font-size: 3.6vw; color: #FFFFFF; font-weight: 800; display: flex;
     justify-content: center; align-items: center; font-family: NanumSquareRound;
 }
 .answer-box { 
@@ -38,9 +38,9 @@ body { display: flex; justify-content: center; align-items: center; background:#
     align-items: center; font-size: 3.3vw; font-weight: 1000; color: #333333;
     font-family: NanumSquareRound; cursor: pointer; font-style: normal;
 }
-.left-box { background: url(left-box.png) no-repeat; background-size: 100% 100%;}
-.center-box { background: url(center-box.png) no-repeat; background-size: 100% 100%;}
-.right-box { background: url(right-box.png) no-repeat; background-size: 100% 100%;}
+.left-box { background: url(/static/images/left-box.png) no-repeat; background-size: 100% 100%;}
+.center-box { background: url(/static/images/center-box.png) no-repeat; background-size: 100% 100%;}
+.right-box { background: url(/static/images/right-box.png) no-repeat; background-size: 100% 100%;}
 
 .bottom-left { margin-left: 16%;}
 .bottom-right { margin-right: 17%;}
@@ -48,7 +48,7 @@ body { display: flex; justify-content: center; align-items: center; background:#
 
 .time-box { 
     position: absolute; top: -13.5%; right: 0%; width: 17.6%; height: 29.1%;
-    background: url(time-box.png) no-repeat; background-size: 100% 100%;
+    background: url(/static/images/time-box.png) no-repeat; background-size: 100% 100%;
     font-size: 3.3vw; font-weight: 800; font-family: NanumSquareRound;
     color: #333333; text-align: center; display: flex; justify-content: center;
     align-items: center; padding-top: 3.2%;

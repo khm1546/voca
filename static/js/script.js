@@ -34,12 +34,16 @@
                          $(this).attr("src", "/static/images/chapter" + chapClass.replaceAll("chapter", "") + "-not.png")
                     }else if(testClass == "chapter-btn-long"){
                           $(this).attr("src", "/static/images/chapter" + chapClass.replaceAll("chapter", "") + "-long-not.png")
+                    }else if(testClass == "chapter-btn-short"){
+                          $(this).attr("src", "/static/images/chapter" + chapClass.replaceAll("chapter", "") + "-short-not.png")
                     }
                 });
                 if(classCheck == "chapter-btn"){
                      $(this).attr("src", "/static/images/chapter" + (chapIdx + 1) + "-com.png")
                 }else if(classCheck == "chapter-btn-long"){
                      $(this).attr("src", "/static/images/chapter" + (chapIdx + 1) + "-long-com.png")
+                }else if(classCheck == "chapter-btn-short"){
+                     $(this).attr("src", "/static/images/chapter" + (chapIdx + 1) + "-short-com.png")
                 }
 
             });

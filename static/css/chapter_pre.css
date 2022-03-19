@@ -79,6 +79,19 @@ body { display: flex; justify-content: center; align-items: center; background:#
 .long .chapter2 { top: 36.5%;}
 .long .chapter3 { top: 64.5%;}
 
+
+.chapter-btn-short {
+    width: 7.1%; height: 11.6%; cursor: pointer;
+    display: block; position: absolute; right: 2.63%;
+}
+.short .chapter1 { top: 7.3%;}
+.short .chapter2 { top: 19.5%;}
+.short .chapter3 { top: 31.6%;}
+.short .chapter4 { top: 43.9%;}
+.short .chapter5 { top: 56.1%;}
+.short .chapter6 { top: 68.5%;}
+.short .chapter7 { top: 80.9%;}
+
 .angle-nine { transform: rotate(9.75deg);}
 .angle-five { transform: rotate(-5.74deg);}
 

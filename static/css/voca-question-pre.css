@@ -29,7 +29,7 @@ body { display: flex; justify-content: center; align-items: center; background:#
     font-size: 4.6vw; color: #FFFFFF; font-weight: 800; display: flex;
     justify-content: center; align-items: center; font-family: NanumSquareRound;
 }
-.answer-box { 
+.answer-box {
      width: 96.8%; height: 20.7%;
     margin: 2% auto 0 auto; display: flex; justify-content: space-between;
 }

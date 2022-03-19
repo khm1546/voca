@@ -37,7 +37,7 @@ body { display: flex; justify-content: center; align-items: center; background:#
 }
 .final-score { 
     position: absolute; top: 9%; left: -4%; width: 70.1%; height: 23.8%;
-    font-family: 'MuseoModerno', cursive; background: #D9328C; color: #FFF;
+    font-family: 'MuseoModerno', cursive;  color: #FFF;
     display: flex; justify-content: center; align-items: center; font-weight: 800;
     letter-spacing: 0.15em; font-size: 2.1vw;
 }
@@ -51,7 +51,7 @@ body { display: flex; justify-content: center; align-items: center; background:#
     position: relative;
 }
 .Total-TimeBox { 
-    background: #D9328C; width: 89.5%; height: 23.7%; position: absolute;
+     width: 89.5%; height: 23.7%; position: absolute;
     top: 9%; left: 5.5%; display: flex; justify-content: center; align-items: center;
 }
 .TimeTotal { font-size: 2.1vw; color: #fff; font-weight: 800; letter-spacing: 0.15em;
@@ -84,7 +84,7 @@ body { display: flex; justify-content: center; align-items: center; background:#
 }
 .weekness { 
     position: absolute; top: 9%; left: -1.6%; width: 34.2%; height: 23.8%;
-    background: #D9328C; color: #FFF; font-family: 'MuseoModerno', cursive;
+     color: #FFF; font-family: 'MuseoModerno', cursive;
     display: flex; justify-content: center; align-items: center; font-weight: 800;
     letter-spacing: 0.15em; font-size: 1.9vw;
 }
