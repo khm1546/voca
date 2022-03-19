@@ -24,9 +24,23 @@
         $(document).ready(function(){
             reszie();
 
-            $(".chapter-btn").click(function (){
+            $(".cp-btn").click(function (){
                 var chapIdx = $(this).index();
-                
-                $(this).attr("src", "/static/images/charter" + chapIdx + "-com.png")
+                var classCheck = $(this).attr("class").split(" ")[0];
+                $(".cp-btn").each(function (){
+                   var chapClass = $(this).attr("class").split(" ")[1];
+                    var testClass = $(this).attr("class").split(" ")[0];
+                    if(testClass == "chapter-btn"){
+                         $(this).attr("src", "/static/images/chapter" + chapClass.replaceAll("chapter", "") + "-not.png")
+                    }else if(testClass == "chapter-btn-long"){
+                          $(this).attr("src", "/static/images/chapter" + chapClass.replaceAll("chapter", "") + "-long-not.png")
+                    }
+                });
+                if(classCheck == "chapter-btn"){
+                     $(this).attr("src", "/static/images/chapter" + (chapIdx + 1) + "-com.png")
+                }else if(classCheck == "chapter-btn-long"){
+                     $(this).attr("src", "/static/images/chapter" + (chapIdx + 1) + "-long-com.png")
+                }
+
             });
         });

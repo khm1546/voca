@@ -57,9 +57,9 @@ body { display: flex; justify-content: center; align-items: center; background:#
     width: 7.1%; height: 26.7%; cursor: pointer; 
     display: block; position: absolute; right: 2.63%;
 }
-.chapter1 { top: 8.3%;}
-.chapter2 { top: 36.5%;}
-.chapter3 { top: 64.5%;}
+.long .chapter1 { top: 8.3%;}
+.long .chapter2 { top: 36.5%;}
+.long .chapter3 { top: 64.5%;}
 
 .angle-nine { transform: rotate(9.75deg);}
 .angle-five { transform: rotate(-5.74deg);}
