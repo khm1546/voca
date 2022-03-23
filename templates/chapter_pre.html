@@ -7,34 +7,59 @@
 
 </head>
 <body>
+<script>
+    $(document).ready(function (){
+       $(".chapter-btn").click(function (){
+
+           var chapter = $(this).data("chapter");
+
+           $.ajax({
+                url:"/voca_chapter_ajax",
+                type:"post",
+                data:{"level":"{{level}}","chapter":chapter}
+            }).done(function(result){
+                var html = '';
+                    console.log(result);
+                for(var i =0; i<result.length; i++){
+                    html += "<section data-unit='"+ result[i].unit  +"'>"
+                    html += "    <img src='/static/images/unit_img.png' class='unit'>"
+                    html += "    <img src='/static/images/" + result[i].unit + ".png' class='unit-num'>"
+                    html += "    <img src='/static/images/un-check.png' class='check-view c-on'>"
+                    html += "</section>"
+                }
+
+                $(".chapter-box").html(html);
+            });
+       });
+
+       $(".chapter1").trigger("click");
+       if("{{level}}" == 10) {
+           $(".chapter1").attr("src", "/static/images/chapter1-com.png");
+       }else if("{{level}}" == 5) {
+           $(".chapter1").attr("src", "/static/images/chapter1-com.png");
+       }else if("{{level}}" == 4) {
+           $(".chapter1").attr("src", "/static/images/chapter1-long-com.png");
+       }else if("{{level}}" == 3) {
+           $(".chapter1").attr("src", "/static/images/chapter1-short-com.png");
+       }else if("{{level}}" == 6) {
+           $(".chapter1").attr("src", "/static/images/chapter1-short-com.png");
+       }
+    });
+</script>
     <div id="wrap">
         <section class="memo">
             <div class="select-unit">SELECT UNIT</div>
             <div class="chapter-box">
-                <section onclick="location.href='/voca-question'">
-                    <img src="/static/images/unit_img.png" class="unit">
-                    <img src="/static/images/01.png" class="unit-num">
-                    <img src="/static/images/un-check.png" class="check-view c-on" >
-                </section>
-                <section>
-                    <img src="/static/images/unit_img.png" class="unit angle-nine">
-                    <img src="/static/images/02.png" class="unit-num">
-                    <img src="/static/images/un-check.png" class="check-view c-off">
-                </section>
-                <section>
-                    <img src="/static/images/unit_img.png" class="unit angle-five">
-                    <img src="/static/images/03.png" class="unit-num">
-                    <img src="/static/images/un-check.png" class="check-view c-off">
-                </section>
+
             </div>
         </section>
 
         <div class="middle">
-            <img src="/static/images/chapter1-com.png" class="chapter-btn chapter1 cp-btn">
-            <img src="/static/images/chapter2-not.png" class="chapter-btn chapter2 cp-btn">
-            <img src="/static/images/chapter3-not.png" class="chapter-btn chapter3 cp-btn">
-            <img src="/static/images/chapter4-not.png" class="chapter-btn chapter4 cp-btn">
-            <img src="/static/images/chapter5-not.png" class="chapter-btn chapter5 cp-btn">
+            <img src="/static/images/chapter1-com.png" class="chapter-btn chapter1 cp-btn" data-chapter="1">
+            <img src="/static/images/chapter2-not.png" class="chapter-btn chapter2 cp-btn" data-chapter="2">
+            <img src="/static/images/chapter3-not.png" class="chapter-btn chapter3 cp-btn" data-chapter="3">
+            <img src="/static/images/chapter4-not.png" class="chapter-btn chapter4 cp-btn" data-chapter="4">
+            <img src="/static/images/chapter5-not.png" class="chapter-btn chapter5 cp-btn" data-chapter="5">
         </div>
 
         <div class="long">

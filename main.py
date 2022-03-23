@@ -33,14 +33,18 @@ def voca_pre():
 def voca_question():
 
     level = request.form["level"]
+    unit = request.form["unit"]
 
-    return render_template("/voca-question-ps.html", level=level)
+    print(unit);
+
+    return render_template("/voca-question-ps.html", level=level, unit=unit)
 
 @app.route("/result", methods=['POST'])
 def voca_result():
     level = request.form["level"]
+    time = request.form["time"]
 
-    return render_template("/voca-result.html", level=level)
+    return render_template("/voca-result.html", level=level, time=time)
 
 @app.route("/AAA")
 def aaa():
@@ -51,185 +55,32 @@ def aaa():
 @app.route("/voca/ajax/q_load", methods=['POST'])
 def q_load():
 
-    q_list = [{
-            "level":10,
-            "question":{
-                "q_num":1,
-                "q":"영화",
-                "a1":"movie",
-                "a2":"mavie",
-                "a3":"mobie"
-            }
-        },
-        {
-            "level": 10,
-            "question": {
-                "q_num": 2,
-                "q": "2번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie"
-            }
-        },
-        {
-            "level": 10,
-            "question": {
-                "q_num": 3,
-                "q": "3번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie"
-            }
-        },
-        {
-            "level": 5,
-            "question": {
-                "q_num": 1,
-                "q": "STARTER 1번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie"
-            }
-        },
-        {
-            "level": 5,
-            "question": {
-                "q_num": 2,
-                "q": "STARTER 2번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie"
-            }
-        },
-        {
-            "level": 5,
-            "question": {
-                "q_num": 3,
-                "q": "STARTER 3번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie"
-            }
-        },
+    level = request.form["level"]
+    unit = request.form["unit"]
+    if level == "10":
+        q_num = 20
+    elif level == "5":
+        q_num = 25
 
-        {
-            "level": 4,
-            "question": {
-                "q_num": 1,
-                "q": "BASIC 1번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie"
-            }
-        },
-        {
-            "level": 4,
-            "question": {
-                "q_num": 2,
-                "q": "BASIC 2번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie"
-            }
-        },
-        {
-            "level": 4,
-            "question": {
-                "q_num": 3,
-                "q": "BASIC 3번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie"
-            }
-        },
-        {
-            "level": 3,
-            "question": {
-                "q_num": 1,
-                "q": "JUNIOR 1번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie",
-                "a6": "mobie"
-            }
-        },
-        {
-            "level":3,
-            "question": {
-                "q_num": 2,
-                "q": "JUNIOR 2번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie",
-                "a6": "mobie"
-            }
-        },
-        {
-            "level": 3,
-            "question": {
-                "q_num": 3,
-                "q": "JUNIOR 3번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie",
-                "a6": "mobie"
-            }
-        },
+    conn = pymysql.connect(host='localhost', user='root', password='root', db='voca')
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    curs.execute("SELECT DISTINCT(question),meaning, (select meaning from question WHERE meaning = meaning order by RAND() LIMIT 1 ) AS EXAMPLE_1 , (select meaning from question WHERE meaning = meaning  order by RAND() LIMIT 1 ) AS EXAMPLE_2 FROM question q WHERE q.level = %s AND Unit = %s ORDER BY RAND() LIMIT %s", (level,unit, q_num))
+    data = curs.fetchall()
 
-        {
-            "level": 6,
-            "question": {
-                "q_num": 1,
-                "q": "HJ 1번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie",
-                "a6": "mobie"
-            }
-        },
-        {
-            "level": 6,
-            "question": {
-                "q_num": 2,
-                "q": "HJ 2번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie",
-                "a6": "mobie"
-            }
-        },
-        {
-            "level": 6,
-            "question": {
-                "q_num": 3,
-                "q": "HJ 3번 문항",
-                "a1": "movie",
-                "a2": "mavie",
-                "a3": "mobie",
-                "a4": "mobie",
-                "a5": "mobie",
-                "a6": "mobie"
-            }
-        },
-    ]
+    return jsonify(data)
 
-    return jsonify(q_list)
+@app.route("/voca_chapter_ajax", methods=['POST'])
+def chapter_load():
+
+    level = request.form["level"]
+    chapter = request.form["chapter"]
+
+    conn = pymysql.connect(host='localhost', user='root', password='root', db='voca')
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    curs.execute("SELECT * FROM UNIT WHERE CHAPTER = %s AND LEVEL = %s", (chapter,level))
+    data = curs.fetchall()
+
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

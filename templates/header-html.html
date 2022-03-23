@@ -1,5 +1,6 @@
 <form id="form" action="/{{page}}" method="post">
     <input type="hidden" name="level" id="input-level" value="">
+     <input type="hidden" name="unit" id="unit" value="">
 </form>
         <div id="mask"></div>
         <div class="option-box">
@@ -19,10 +20,13 @@
         $("#form").submit();
     });
 
-    $(".chapter-box").click(function (){
+    $(document).on("click",".chapter-box > section", function (){
 
         var level = "{{level}}";
+        var unit = $(this).data("unit");
+
         $("#input-level").val(level);
+        $("#unit").val(unit);
 
         $("#form").submit();
     });

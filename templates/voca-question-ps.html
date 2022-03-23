@@ -40,22 +40,19 @@
     </div>
     <form id="question-form" method="post" action="/result">
         <input type="hidden" name="level" value="{{level}}">
-        <input type="hidden" id="q1">
-        <input type="hidden" id="q2">
-        <input type="hidden" id="q3">
-        <input type="hidden" id="q4">
-        <input type="hidden" id="q5">
+        <input type="hidden" name="time" id="time">
     </form>
 </body>
 {% include 'header-html.html' %}
 <script>
-    var qCnt = 1;
+    var qCnt = 0;
 
     $(document).on('click','.next-btn', function (){
         qCnt ++;
-        if(qCnt > 3){
+        if(qCnt > 19){
             var qCon = confirm("마지막 문항입니다. 제출하시겠습니까?");
             if(qCon){
+                $("#time").val($("#count-down-timer").text());
                 $("#question-form").submit();
             }else{
                 qCnt --;
@@ -74,7 +71,7 @@
 
         $("#q" + qCnt).val("");
 
-       if(qCnt == 0){
+       if(qCnt == -1){
            alert("첫 번째 문항입니다.");
            qCnt++;
            return false;
@@ -89,9 +86,10 @@
 
         $("#q" + qCnt).val(example);
         qCnt ++;
-        if(qCnt > 3){
+        if(qCnt > 19){
             var qCon = confirm("마지막 문항입니다. 제출하시겠습니까?");
             if(qCon){
+                $("#time").val($("#count-down-timer").text());
                 $("#question-form").submit();
             }else{
                 qCnt --;
@@ -119,11 +117,12 @@
             sec = parseInt(secondsRemaining % 60);
 
             element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
-
+            console.log(secondsRemaining);
             secondsRemaining = secondsRemaining - 1;
             if($("#count-down-timer").text() == "00:00"){
                 alert("시간이 초과되어 시험이 종료되었습니다.");
-                location.href='/result';
+                $("#question-form").submit();
+
             }
             if (secondsRemaining < 0) { clearInterval(countInterval) };
 
@@ -136,55 +135,37 @@
 
         $.ajax({
             url:"/voca/ajax/q_load",
-            type:"post"
+            type:"post",
+            data:{"level":"{{level}}","unit":"{{unit}}"}
         }).done(function (result){
-            console.log(result);
                 var q_html = '';
                 var a_html = '';
+
+                var html = '';
+
+
             for(var i=0; i<result.length; i++){
+                var exampleList = [];
 
-                if({{level}} == result[i].level && result[i].level == 10){
-                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
-                }else if({{level}} == result[i].level && result[i].level == 5){
-                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
-                }else if({{level}} == result[i].level && result[i].level == 4){
-                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='D'>" + result[i].question.a4 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='E'>" + result[i].question.a5 + "</div>";
-                }else if({{level}} == result[i].level && result[i].level == 3){
-                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='D'>" + result[i].question.a4 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='E'>" + result[i].question.a5 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='F'>" + result[i].question.a6 + "</div>";
-                }else if({{level}} == result[i].level && result[i].level == 6){
-                    q_html += "<div class='q"+ result[i].question.q_num +" question-total'>" + result[i].question.q + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='A'>" + result[i].question.a1 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='B'>" + result[i].question.a2 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='C'>" + result[i].question.a3 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example left-box question-total' data-example='D'>" + result[i].question.a4 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example center-box question-total' data-example='E'>" + result[i].question.a5 + "</div>";
-                    a_html += "<div class='q"+ result[i].question.q_num +" example right-box question-total' data-example='F'>" + result[i].question.a6 + "</div>";
-                }
+                html += "<input type='hidden' name='q" + i +">";
 
+                exampleList.push(result[i].meaning)
+                exampleList.push(result[i].EXAMPLE_1)
+                exampleList.push(result[i].EXAMPLE_2)
+
+                randomItem(exampleList)
+                console.log(exampleList)
+                q_html += "<div class='q"+ i +" question-total'>" + result[i].question + "</div>";
+                a_html += "<div class='q"+ i +" example left-box question-total' data-example='A'>" + exampleList[0] + "</div>";
+                a_html += "<div class='q"+ i +" example center-box question-total' data-example='B'>" + exampleList[1]  + "</div>";
+                a_html += "<div class='q"+ i +" example right-box question-total' data-example='C'>" + exampleList[2]  + "</div>";
 
             }
             $(".question-box").html(q_html);
             $(".answer-box").html(a_html);
-
+            $("#question-form").append(html);
             $(".question-total").hide();
-            $(".q1").show();
+            $(".q0").show();
         });
 
         let time_minutes = 15; // Value in minutes
@@ -200,6 +181,8 @@
     };
 
 
-
+function randomItem(array) {
+  array.sort(() => Math.random() - 0.5);
+}
     </script>
 </html>
