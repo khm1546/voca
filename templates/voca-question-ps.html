@@ -41,15 +41,25 @@
     <form id="question-form" method="post" action="/result">
         <input type="hidden" name="level" value="{{level}}">
         <input type="hidden" name="time" id="time">
+        <input type="hidden" name="q1" id="q1">
+        <input type="hidden" name="q2" id="q2">
+        <input type="hidden" name="q3" id="q3">
+        <input type="hidden" name="q4" id="q4">
+        <input type="hidden" name="q5" id="q5">
+        <input type="hidden" name="q6" id="q6">
+        <input type="hidden" name="q7" id="q7">
+        <input type="hidden" name="q8" id="q8">
+        <input type="hidden" name="q9" id="q9">
+        <input type="hidden" name="q10" id="q10">
     </form>
 </body>
 {% include 'header-html.html' %}
 <script>
-    var qCnt = 0;
+    var qCnt = 1;
 
     $(document).on('click','.next-btn', function (){
         qCnt ++;
-        if(qCnt > 19){
+        if(qCnt > 10){
             var qCon = confirm("마지막 문항입니다. 제출하시겠습니까?");
             if(qCon){
                 $("#time").val($("#count-down-timer").text());
@@ -66,16 +76,17 @@
     });
 
     $(document).on('click','.pre-btn', function (){
-          qCnt --;
-        var example = $(this).data("example");
 
+        var example = $(this).data("example");
+        console.log(qCnt)
         $("#q" + qCnt).val("");
 
-       if(qCnt == -1){
+       if(qCnt == 1){
            alert("첫 번째 문항입니다.");
            qCnt++;
            return false;
        }else{
+            qCnt --;
            $(".question-total").hide();
            $(".q" + qCnt).show();
        }
@@ -86,7 +97,7 @@
 
         $("#q" + qCnt).val(example);
         qCnt ++;
-        if(qCnt > 19){
+        if(qCnt > 10){
             var qCon = confirm("마지막 문항입니다. 제출하시겠습니까?");
             if(qCon){
                 $("#time").val($("#count-down-timer").text());
@@ -117,7 +128,7 @@
             sec = parseInt(secondsRemaining % 60);
 
             element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
-            console.log(secondsRemaining);
+
             secondsRemaining = secondsRemaining - 1;
             if($("#count-down-timer").text() == "00:00"){
                 alert("시간이 초과되어 시험이 종료되었습니다.");
@@ -143,19 +154,17 @@
 
                 var html = '';
 
-
-            for(var i=0; i<result.length; i++){
+            for(var j=0; j<result.length; j++){
                 var exampleList = [];
-
+                var i = j+1
                 html += "<input type='hidden' name='q" + i +">";
 
-                exampleList.push(result[i].meaning)
-                exampleList.push(result[i].EXAMPLE_1)
-                exampleList.push(result[i].EXAMPLE_2)
+                exampleList.push(result[j].meaning)
+                exampleList.push(result[j].EXAMPLE_1)
+                exampleList.push(result[j].EXAMPLE_2)
 
-                randomItem(exampleList)
                 console.log(exampleList)
-                q_html += "<div class='q"+ i +" question-total'>" + result[i].question + "</div>";
+                q_html += "<div class='q"+ i +" question-total'>" + result[j].question + "</div>";
                 a_html += "<div class='q"+ i +" example left-box question-total' data-example='A'>" + exampleList[0] + "</div>";
                 a_html += "<div class='q"+ i +" example center-box question-total' data-example='B'>" + exampleList[1]  + "</div>";
                 a_html += "<div class='q"+ i +" example right-box question-total' data-example='C'>" + exampleList[2]  + "</div>";
@@ -165,7 +174,7 @@
             $(".answer-box").html(a_html);
             $("#question-form").append(html);
             $(".question-total").hide();
-            $(".q0").show();
+            $(".q1").show();
         });
 
         let time_minutes = 15; // Value in minutes
@@ -181,8 +190,6 @@
     };
 
 
-function randomItem(array) {
-  array.sort(() => Math.random() - 0.5);
-}
+
     </script>
 </html>
