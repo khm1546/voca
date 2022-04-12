@@ -15,7 +15,7 @@
     {% endif %}
     {% include 'header.html' %}
 </head>
-<body>
+<body onload="noBack()" onpageshow="if(event.persisted) noBack();" oncontextmenu="return false">
     <div id="wrap">
         <section class="memo">
             <div class="select-unit">SELECT UNIT</div>
@@ -38,8 +38,9 @@
             <img src="/static/images/cancel.png" class="PlayBtn cancel">
         </div>
     </div>
-    <form id="question-form" method="post" action="/result">
+    <form id="question-form" method="post" action="/marking">
         <input type="hidden" name="level" value="{{level}}">
+        <input type="hidden" name="unit" value="{{unit}}">
         <input type="hidden" name="time" id="time">
         <input type="hidden" name="q1" id="q1">
         <input type="hidden" name="q2" id="q2">
@@ -163,7 +164,6 @@
                 exampleList.push(result[j].EXAMPLE_1)
                 exampleList.push(result[j].EXAMPLE_2)
 
-                console.log(exampleList)
                 q_html += "<div class='q"+ i +" question-total'>" + result[j].question + "</div>";
                 a_html += "<div class='q"+ i +" example left-box question-total' data-example='A'>" + exampleList[0] + "</div>";
                 a_html += "<div class='q"+ i +" example center-box question-total' data-example='B'>" + exampleList[1]  + "</div>";
@@ -175,6 +175,17 @@
             $("#question-form").append(html);
             $(".question-total").hide();
             $(".q1").show();
+
+            $(".example").each(function (){
+                var thisTextlen = $(this).text().length;
+
+                if(thisTextlen > 8){
+                    $(this).css("font-size","2vw");
+                }else if(thisTextlen > 4){
+
+                    $(this).css("font-size","2.5vw");
+                }
+            });
         });
 
         let time_minutes = 15; // Value in minutes
@@ -189,6 +200,19 @@
 
     };
 
+
+
+ window.history.forward();
+ function noBack(){window.history.forward();}
+
+    function refreshBlock(event){
+        if(event.keyCode == 116){
+            event.keyCode = 2;
+            return false;
+        }
+    }
+
+    document.onkeydown = refreshBlock;
 
 
     </script>

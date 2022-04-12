@@ -118,6 +118,13 @@ body { display: flex; justify-content: center; align-items: center; background:#
 .cancel { top: 73.5%; }
 
 
+.slide-btn {animation: motion 0.3s linear 0s infinite alternate; margin-top: 0;}
+
+@keyframes motion {
+	0% {margin-top: 0px;}
+	100% {margin-top: 10px;}
+}
+
 @media (min-aspect-ratio: 1280/800){
     .small-memo > h1{ font-size: 17.6vh; }
     .TimeTotal { font-size: 3.36vh;}

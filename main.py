@@ -40,10 +40,20 @@ def voca_question():
 
     return render_template("/voca-question-ps.html", level=level, unit=unit)
 
-@app.route("/result", methods=['POST'])
+@app.route("/result", methods=['GET','POST'])
 def voca_result():
+
+    level = request.args.get("level")
+    unit = request.args.get("unit")
+
+    return render_template("/voca-result.html", level=level, unit=unit)
+
+
+@app.route("/marking", methods=['GET','POST'])
+def marking():
     level = request.form["level"]
-    time = request.form["time"]
+    unit = request.form["unit"]
+
     if level == "10":
         q_num = 10
     elif level == "5":
@@ -52,7 +62,6 @@ def voca_result():
     d = {}
     for i in range(1, q_num+1):
         d['q{}'.format(i)] = request.form["q{}".format(i)]
-    print(d)
 
     for i in range(1, q_num+1):
         if session['a{}'.format(i)] == 0:
@@ -64,17 +73,22 @@ def voca_result():
         print(session['a{}'.format(i)])
 
 
+
+    conn = pymysql.connect(host='localhost', user='root', password='root', db='voca')
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+
     for i in range(1, q_num+1):
         print(d['q{}'.format(i)])
         if d['q{}'.format(i)] is None or d['q{}'.format(i)] == "":
-            print(session['q{}'.format(i)], ": ", "?")
+            curs.execute("INSERT INTO VOCA_RESULT (q_idx,unit,user_idx,a_check,level) values (%s,%s,'1','?',%s)", (session['q{}'.format(i)],unit,level))
+            conn.commit()
         elif d['q{}'.format(i)] == session['a{}'.format(i)]:
-            print(session['q{}'.format(i)], ": ", "O")
+            curs.execute("INSERT INTO VOCA_RESULT (q_idx,unit,user_idx,a_check,level) values (%s,%s,'1','O',%s)", (session['q{}'.format(i)],unit,level))
+            conn.commit()
         else:
-            print(session['q{}'.format(i)], ": ", "X")
-
-
-    return render_template("/voca-result.html", level=level, time=time)
+            curs.execute("INSERT INTO VOCA_RESULT (q_idx,unit,user_idx,a_check,level) values (%s,%s,'1','X',%s)", (session['q{}'.format(i)],unit,level))
+            conn.commit()
+    return redirect(url_for('voca_result', level=level,unit=unit))
 
 @app.route("/AAA")
 def aaa():
@@ -141,6 +155,20 @@ def chapter_load():
     curs = conn.cursor(pymysql.cursors.DictCursor)
     curs.execute("SELECT * FROM UNIT WHERE CHAPTER = %s AND LEVEL = %s", (chapter,level))
     data = curs.fetchall()
+
+    return jsonify(data)
+
+@app.route("/exam_result_ajax", methods=['POST'])
+def exam_result_ajax():
+
+    level = request.form["level"]
+    unit = request.form["unit"]
+    user_idx = request.form["user_idx"]
+
+    conn = pymysql.connect(host='localhost', user='root', password='root', db='voca')
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    curs.execute("SELECT sum(if(a_check='O', 1,0)) as correct, sum(if(a_check='X', 1,0)) as wrong_answer, sum(if(a_check='?', 1,0)) as answer_pass FROM voca_result WHERE unit = %s AND LEVEL = %s AND user_idx = %s", (unit,level,user_idx))
+    data = curs.fetchone()
 
 
 

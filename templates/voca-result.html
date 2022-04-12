@@ -4,6 +4,7 @@
     <title>voca-result</title>
     <link rel="stylesheet" type="text/css" href="/static/css/voca-result.css">
     {% include 'header.html' %}
+    <script src="/static/js/result.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -67,8 +68,8 @@
                             </li>
                         </ul>
 
-                        <img src="/static/images/slide-next-btn.png" class="slide-next-btn">
-                        <img src="/static/images/slide-prev-btn.png" class="slide-prev-btn">
+                        <img src="/static/images/slide-next-btn.png" class="slide-next-btn slide-hover">
+                        <img src="/static/images/slide-prev-btn.png" class="slide-prev-btn slide-hover">
                     </div>
                 </div>
             </div>
@@ -77,11 +78,27 @@
             <img src="/static/images/next-btn.png" class="PlayBtn next-btn">
             <img src="/static/images/pre-btn.png" class="PlayBtn pre-btn">
             <img src="/static/images/setting.png" class="PlayBtn setting">
-            <img src="/static/images/cancel.png" class="PlayBtn cancel">
+            <img src="/static/images/cancel.png" class="PlayBtn cancel" onClick="pageOff()">
         </div>
     </div>
 </body>
     <script>
+
+        $(document).ready(function (){
+            $.ajax({
+                url:"/exam_result_ajax",
+                type:"post",
+                data:{'user_idx':"1","level":"{{level}}","unit":"{{unit}}"}
+            }).done(function(result){
+
+               $(".clear-question > span").text(result.correct)
+               $(".wrong-question > span").text(result.wrong_answer)
+               $(".molla-question > span").text(result.answer_pass)
+            });
+        });
+
+
+
 
             if("{{level}}" == 10){
                 $(".final-score").css("background","#D9328C");
@@ -105,12 +122,25 @@
                 $(".weekness").css("background","#3F5FAB");
             }
 
-        $('.slide-next-btn').click(function(){
-            alert('다음');
-        })
+            $('.slide-next-btn').click(function(){
+                alert('다음');
+            });
 
-        $('.slide-prev-btn').click(function(){
-            alert('이전');
-        })
+             $('.slide-prev-btn').click(function(){
+                 alert('이전');
+             });
+             $(".slide-hover").hover(function (){
+                 $(this).addClass("slide-btn");
+             }, function(){
+                 $(this).removeClass("slide-btn");
+             });
+
+             function pageOff(){
+                 var pageConfirm = confirm("TOSEL Voca를 종료하시겠습니까?");
+
+                 if(pageConfirm){
+                     location.href="/";
+                 }
+             }
     </script>
 </html>
